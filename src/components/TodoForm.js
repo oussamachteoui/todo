@@ -26,12 +26,12 @@ export default function TodoForm(){
   const handleSubmit = async event => {
     event.preventDefault();
     if(currentTodo.text){
-      const response = await axios.patch(`https://hooks-api.ellizzabbetth.now.sh/todos/${currentTodo.id}`, {
-        text: todo
+      const response = await axios.patch(`http://todomango.test:8080/api/edit/${currentTodo.id}`, {
+      text: todo
       })
       dispatch({type: "UPDATE_TODO", payload: response.data});
     } else {
-      const response = await axios.post('https://hooks-api.ellizzabbetth.now.sh/todos', {
+      const response = await axios.post('http://todomango.test:8080/api/add', {
         id: uuidv4(),
         text: todo,
         complete: false

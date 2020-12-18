@@ -33,7 +33,7 @@ const App =() => {
    const initialState = useContext(TodosContext);
    const [state, dispatch] = useReducer(todosReducer, initialState);
    // custom hook
-   const savedTodos =  useAPI("https://hooks-api.ellizzabbetth.now.sh/todos");
+   const savedTodos =  useAPI("http://todomango.test:8080/api/");
    // put saved todos in state using redux
    useEffect(() => {
      // dispatch new action
@@ -48,15 +48,17 @@ const App =() => {
      <TodosContext.Provider value={{state, dispatch}}>
        <BrowserRouter>
           <Header />
-          <Switch>
-              <Route path="/login"><Login /></Route>
-              <Route path="/register" ><Register /></Route> 
-              {/* <Route path="/todo" component={TodoForm} exact />
-              <Route path="/list" component={TodoList} exact /> */}
-          </Switch>
+          <Switch> 
+               <Route path="/login"><Login /></Route>
+              <Route path="/register" ><Register /></Route>  
+               <Route path="/todo" component={TodoForm} exact />
+              <Route path="/list" component={TodoList} exact /> 
+           </Switch>
        </BrowserRouter>
        
      
+      <TodoForm />
+      <TodoList />
      </TodosContext.Provider>
 
    )

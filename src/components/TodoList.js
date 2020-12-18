@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import TodosContext from '../context';
-
 import axios from 'axios';
 
 export default function TodoList(){
@@ -20,7 +19,7 @@ export default function TodoList(){
             <span
               className="cursor-pointer"
               onDoubleClick={async () => {
-                const response = await axios.patch(`https://hooks-api.ellizzabbetth.now.sh/todos/${todo.id}`,
+                const response = await axios.patch(`http://todomango.test:8080/api/${todo.id}`,
                 {complete: !todo.complete})
                 dispatch({type: "TOGGLE_TODO", payload: response.data
               })
@@ -40,7 +39,7 @@ export default function TodoList(){
             </button>
             <button
               onClick={ async () => {
-                 await axios.delete(`https://hooks-api.ellizzabbetth.now.sh/todos/${todo.id}`);
+                 await axios.delete(`http://todomango.test:8080/api/delete/${todo.id}`);
                  dispatch({ type: "REMOVE_TODO", payload: todo })
                }}
             >
